@@ -1,0 +1,31 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.995511288233466, 135.75973616004504
+                ]
+            },
+            "properties": {
+                "id": 1,
+                "name": "雪肽屋町"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.99496136023037, 135.75972263243742
+                ]
+            },
+            "properties": {
+                "id": 2,
+                "name": "鍵屋町"
+            }
+        }
+    ]
+}

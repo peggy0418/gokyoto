@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特色美食</title>
+    <!-- JavaScript Bundle with Popper -->
+</head>
+<link rel="stylesheet" href="./bootstrap.css">
+<link rel="stylesheet" href="./animaction/animaction.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+<style>
+    #map {
+        height: 600px;
+    }
+
+    /* 測試會不會跑版 */
+    html {
+        height: 100%;
+    }
+
+    body {
+        background-image: url("../圖檔/小專_background-.png");
+        width: 100%;
+        background-size: contain;
+        background-repeat: repeat-y repeat-x;
+        background-attachment: fixed;
+
+    }
+
+    #bigcontent {
+        margin-top: 80px;
+        margin-left: 250px;
+        /* text-align: center; */
+        width: 800px;
+        background-color: rgba(255, 255, 255, 0.5);
+        background-repeat: repeat-y;
+        box-shadow: 3px 3px 5px gray inset;
+        text-align: center;
+    }
+
+    #title {
+        background-color: rgba(255, 166, 0, 0.463);
+        color: black;
+    }
+
+    .navbar {
+        background-image: url("../圖檔/櫻花.png");
+        background-color: rgb(248, 194, 237);
+        color: white;
+        height: 80px;
+    }
+
+    .nav-item {
+        display: flex;
+        font-family: 'Noto Sans TC', sans-serif;
+        font-size: 16px;
+        margin-left: 100px;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+
+    }
+
+    .navbar-brand {
+        position: relative;
+    }
+
+    .nav-item:hover {
+        background-color: peachpuff;
+        -webkit-animation: jello-diagonal-2 0.8s both;
+        animation: jello-diagonal-2 0.8s both;
+    }
+
+    .dropdown-menu {
+        background-color: rgb(255, 218, 185, 0.7);
+    }
+
+    .offcanvas-body li {
+        text-align: start;
+    }
+
+    #link_a a:link {
+        color: black;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    #link_a a:visited {
+        color: darkblue;
+        font-size: 30px;
+        text-decoration: line-through;
+
+    }
+
+    #link_a a:focus {
+        background-color: coral;
+        color: white;
+        font-size: 20px;
+
+    }
+
+    #link_a a:hover {
+        background-color: gold;
+        text-decoration: overline;
+
+
+    }
+
+    #link_a a:active {
+        text-decoration: line-through;
+    }
+
+    #bigcontent .btn {
+        margin-right: 730px;
+
+    }
+
+
+    /* 要先設定外層容器的width才能調整object-fit */
+    .carousel {
+        width: 80%;
+    }
+
+    .slide button {
+        margin-left: 100px;
+    }
+
+    .carousel img {
+        margin-left: 80px;
+        height: 400px;
+        display: block;
+        object-fit: contain;
+    }
+
+    #temple li {
+        list-style-type: "\2728"
+    }
+
+    #addr {
+        padding: 25px;
+    }
+
+    #addr li {
+        list-style-type: "\2728"
+    }
+
+
+    #content {
+        background-color: rgba(250, 235, 215, 0.85);
+        font-size: 14px;
+        padding: 30px;
+        text-align: justify;
+        line-height: 30px;
+    }
+
+    #content img {
+        margin-left: 80px;
+    }
+
+    #up {
+        display: inline-block;
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        background-color: #fff591;
+        /* border-radius: 20px; */
+    }
+
+    #clickmsg {
+        display: none;
+    }
+
+    #up:hover #clickmsg {
+        display: inline-block;
+        position: absolute;
+        top: -35px;
+        right: 20px;
+        width: 50px;
+        border: 3px;
+        background-color: rgba(17, 17, 16, 0.5);
+        color: azure;
+        border-radius: 20px;
+
+    }
+</style>
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+<body>
+    <div id="background">
+        <div class="container">
+            <nav class="navbar navbar-expand-sm fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="enter.html"><img src="../圖檔/GOKYOTO-1--unscreen.gif" alt=""
+                            height="120"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="homepage.html">回分類頁</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="culture" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="true">體驗與祭典</a>
+                                <ul class="dropdown-menu" aria-labelledby="culture">
+                                    <li><a class="dropdown-item" href="./文化體驗.html">文化體驗</a></li>
+                                    <hr>
+                                    <li><a class="dropdown-item" href="./葵祭.html">祭典節慶</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./景點介紹.html">景點介紹</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./美食介紹.html">美食介紹</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./map.html">用地圖來認識京都</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <br>
+    <div id="bigcontent">
+        <a class="btn btn-primary btn-md" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+            aria-controls="offcanvasExample"
+            style="background-color: rgb(244, 193, 117);border-style: none;color: black;">
+            目錄
+        </a>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel" data-bs-scroll="true"
+            style="margin-top:80px;width: 30%;background-color: rgba(250, 227, 215, 0.8);">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">總覽</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div id="link_a" class="text-pop-up-top">
+                    <li><a href="#1"> 熱呼呼又健康的湯豆腐</a></li>
+                    <li><a href="#2">透過外觀和味道感受季節的懷石料理</a></li>
+                    <li><a href="#3">鹹中帶甜又大條的鯡魚蕎麥麵</a></li>
+                    <li><a href="#4">厚片鯖魚和醋飯完美搭配的鯖魚壽司</a></li>
+                    <li><a href="#5">可以輕鬆享用到傳統醃漬物的漬物壽司</a></li>
+                    <li><a href="#6">口感特殊且別具風味的蕨餅</a></li>
+                    <li><a href="#7">夏天透心涼人氣點心「葛切」</a></li>
+                    <li><a href="#8">微苦滋味令人著迷的抹茶甜點</a></li>
+                </div>
+            </div>
+        </div>
+        <div id="1">
+            <br>
+            <h3 id="title"> 熱呼呼又健康的湯豆腐</h3>
+            <div id="carouselExampleIndicators1" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000137/img/zh-tw/a2000137_parts_5d0b32731cbbd.jpg?20230120090900&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://www.bring-you.info/wp-content/uploads/2015/08/junsei-restaurant-18.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://ik.imagekit.io/ftoobeznjtf/tr:w-600/489" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content">
+                豆腐的原料是黃豆和水，京都的地下水是優質的軟水，而且水源豐富，所以自150年以前開始就很盛行製作豆腐。
+                <br>「湯豆腐」是京都的代表性美食，吃法是將豆腐放入浸泡了昆布的熱水裡加熱，然後沾醬油基底的醬汁食用。
+                <br>寺廟的「精進料理」是以蔬菜代替肉類，而豆腐也是極受重用的食物，所以寺廟境內或是其周邊至今仍有許多的湯豆腐店。
+            </div>
+        </div>
+        <div id="2">
+            <br>
+            <h3 id="title" class="1">透過外觀和味道感受季節的懷石料理</h3>
+            <div id="carouselExampleIndicators2" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000137/img/zh-tw/a2000137_parts_5d0b3292d464c.jpg?20230120090900&q=800"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://resources.matcha-jp.com/resize/720x2000/2019/12/25-93967.webp"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2016/05/18/d4443985080a4d5a80167d21ee73ef03_multicourse+kaiseki.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content">
+                提到京都令人嚮往的料理，那就非「懷石」莫屬了。
+                <br>一套懷石料理包含了生魚片、燒烤、炸物、煮物、湯品、白飯、甜點，每道料理都是一道一道單獨送上桌。
+                <br>食材大量使用可感受季節氣氛的當令食材，擺盤和器皿也非常地講究。
+                <br>據說懷石起源於茶道，原本是在享用抹茶前送上來的簡單餐點，到了現代不但品項數增加，而且更下功夫了。
+            </div>
+        </div>
+        <div id="3">
+            <br>
+            <h3 id="title">鹹中帶甜又大條的鯡魚蕎麥麵</h3>
+            <div id="carouselExampleIndicators3" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000137/img/zh-tw/a2000137_parts_5d0b32b13aca1.jpg?20230120090900&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://cn.soufani.com/wp-content/uploads/2019/05/679f2d2012971f6139d8381f0211bcb4.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://img.ltn.com.tw/Upload/food/page/2019/10/01/191001-9664-8-YXKoS.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators3"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators3"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content">
+                「鯡魚蕎麥麵」是將煮得鹹中帶甜的「鯡魚」放在蕎麥麵上的料理。
+                <br>以前由於京都地處內陸，不容易吃到魚，因此容易保存的鯡魚乾在京都逐漸普及。
+                在這個背景之下，京都人於150多年以前開始吃鯡魚蕎麥麵，鯡魚蕎麥麵也就成為了京都的名物料理。
+                <br>第一次吃鯡魚蕎麥麵的人看到料理送上來時，大多數的人會先被超大隻的鯡魚所嚇到。
+                不過魚肉鮮嫩鬆軟，而且鯡魚鹹中帶甜的味道融入湯汁裡，連著麵條一起吃簡直是絕品呢。
+            </div>
+        </div>
+        <div id="4">
+            <br>
+            <h3 id="title">厚片鯖魚和醋飯完美搭配的鯖魚壽司</h3>
+            <div id="carouselExampleIndicators4" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000137/img/zh-tw/a2000137_parts_5d0b32d63d366.jpg?20230120090900&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://cdn2.ettoday.net/images/1382/1382846.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://pic.pimg.tw/aoshiken/1323371474-758436117.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators4"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators4"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content">
+                用鹽醃的鯖魚和鯡魚蕎麥麵同樣曾經是京都珍貴的保存食品。
+                <br>「鯖魚壽司」便是因而發展普及的料理。從前的冷藏技術和物流並不發達，因此在福井捕獲的鯖魚會先灑鹽再以貨車運至京都，而當時運送鯖魚的道路至今也仍被稱為「鯖魚街道」。
+                將灑過鹽的鯖魚以醋浸泡再和醋飯捏製，就成了鯖魚壽司。
+                厚片鯖魚肉味道濃郁鮮美，搭配醋的酸味和醋飯的酸甜，創造出了獨特的美味。
+                若在壽司表面鋪上昆布，更可帶出富層次感的風味。
+            </div>
+        </div>
+        <div id="5">
+            <br>
+            <h3 id="title">可以輕鬆享用到傳統醃漬物的漬物壽司</h3>
+            <div id="carouselExampleIndicators5" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators5" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators5" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators5" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000137/img/zh-tw/a2000137_parts_5d0b32f722dc0.jpg?20230120090900&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://tabiiro.travel/facility/gourmet/303507/subimg_1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://ookini.tv/wp-content/uploads/a2d9c7a40f40c02536b4a5d6243279e4.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators5"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators5"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content">
+                日本自古以來就會用鹽、醋、米糠、酒粕等來醃漬蔬菜使其發酵，製作成「漬物（醃菜）」，其中尤以京都的種類特別豐富。
+                可惜因為漬物需要冷藏，旅行時不方便購買攜帶，這種時候不妨去餐廳點個「漬物壽司」嚐鮮。
+                <br>以漬物取代魚肉的漬物壽司最近人氣高漲，多數漬物壽司都是由老字號的漬物店所製作，因此非常美味。
+                若將外觀五彩繽紛的漬物壽司照打卡上傳至社群網站，想必會造成一股話題呢。
+            </div>
+        </div>
+        <div id="6">
+            <br>
+            <h3 id="title"> 口感特殊且別具風味的蕨餅</h3>
+            <div id="carouselExampleIndicators6" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators6" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators6" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators6" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000137/img/zh-tw/a2000137_parts_5d0b33276ff16.jpg?20230120090900&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000213/img/basic/a2000213_main.jpg?20200702161759" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://www.bubu-jp.com/wp-content/uploads/2017/04/1-1-1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators6"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators6"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content">
+                「蕨餅」有著充滿彈性的口感，讓人一吃就上癮。
+                <br>許多店家都會用便宜的樹薯粉或地瓜粉來代替蕨粉，而真正以蕨的根莖磨粉所製作的道地蕨餅，在京都是能夠品嚐到的。
+                蕨餅的特徵是柔軟的口感與蕨粉的特殊風味，除了加黃豆粉、黑蜜食用外，也可以用砂糖和水將紅豆煮成紅豆泥後，再以蕨餅包裹享用。
+            </div>
+        </div>
+        <div id="7">
+            <br>
+            <h3 id="title"> 夏天透心涼人氣點心「葛切」</h3>
+            <div id="carouselExampleIndicators7" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators7" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators7" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators7" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000137/img/zh-tw/a2000137_parts_5d0b333f40fe4.jpg?20230120090900&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i0.wp.com/boo2k.com/wp-content/uploads/2013/10/IMG_0141.jpg?fit=750%2C500&ssl=1" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="data:image/jpeg;base64,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" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators7"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators7"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content">
+                在京都甜食中，「葛切」也是一項非常有人氣的食物。
+                而「葛切」是將稱作葛的植物根莖做成「葛粉」後，先以水溶解再倒入模型裡隔水加熱，定型後切成有如麵條般的細長條。
+                <br>一般吃法是用黑砂糖和水做成「黑蜜」後，將黑蜜淋到葛切上食用。
+                葛切那透心涼的半透明外觀雖然給人夏天的印象，不過在京都一年四季都能品嚐的到喔。
+                推薦各位去體驗口感滑溜清爽的特殊滋味。
+            </div>
+        </div>
+        <div id="8">
+            <br>
+            <h3 id="title">微苦滋味令人著迷的抹茶甜點</h3>
+            <div id="carouselExampleIndicators8" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators8" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators8" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators8" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000137/img/zh-tw/a2000137_parts_5d0b335eade76.jpg?20230120090900&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000494/img/zh-tw/a2000494_main.jpg?20210116225451" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://mimihan.tw/wp-content/uploads/20181211204353_70.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators8"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators8"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content">
+                「抹茶」甜點能夠讓人感受到日本風情，而在眾多抹茶甜點之中，近幾年來「抹茶百匯」的人氣逐漸高漲。
+                <br>京都宇治是茶葉的名產地，京都的抹茶甜點也多數使用大量的上等抹茶。
+                <br>在京都可以品嚐到多種味道濃厚又帶點苦澀味的抹茶甜點，例如冰淇淋、果凍、鮮奶油、芭芭露亞以及蜂蜜蛋糕等，都是極具魅力的甜點。
+                如此值得一嚐的抹茶甜點如今已列入了京都遊客的必吃清單。
+            </div>
+        </div>
+    </div>
+
+    <div id="up" class="rounded-circle"><a class="nav-link active" aria-current="page" href="#"><img
+                src="../圖檔/up-2--unscreen.gif" alt="" height="50"></a>
+        <div id="clickmsg" class="animate__animated animate__bounce animate__infinite">To top</div>
+    </div>
+</body>
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+
+</html>

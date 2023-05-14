@@ -1,0 +1,103 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00369950773368,
+                    135.75964737382208
+                ]
+            },
+            "properties": {
+                "id": 12,
+                "name": "四條"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00250583956333,
+                    135.75967528033783
+                ]
+            },
+            "properties": {
+                "id": 13,
+                "name": "綾小路"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.001320169852164,
+                    135.75968960295896
+                ]
+            },
+            "properties": {
+                "id": 14,
+                "name": "佛光寺"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00017603223614,
+                    135.7596989379367
+                ]
+            },
+            "properties": {
+                "id": 15,
+                "name": "高辻"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.99889216194095,
+                    135.75969516424527
+                ]
+            },
+            "properties": {
+                "id": 16,
+                "name": "松原"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.99765858643463,
+                    135.7597265765414
+                ]
+            },
+            "properties": {
+                "id": 17,
+                "name": "萬壽寺"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.996301657067576,
+                    135.7597001787166
+                ]
+            },
+            "properties": {
+                "id": 18,
+                "name": "五條"
+            }
+        }
+    ]
+}

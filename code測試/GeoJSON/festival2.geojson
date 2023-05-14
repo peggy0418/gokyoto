@@ -1,0 +1,57 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00379352025523, 135.75964103490023
+                ]
+            },
+            "properties": {
+                "id": 1,
+                "name": "四條通阪急烏丸站"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00382732574256, 135.76930982287212
+                ]
+            },
+            "properties": {
+                "id": 2,
+                "name": "四条河原町"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.01092808887917, 135.76904632129646
+                ]
+            },
+            "properties": {
+                "id": 3,
+                "name": "ゼスト御池"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.01083421403724, 135.75966963785197
+                ]
+            },
+            "properties": {
+                "id": 4,
+                "name": "地鐵烏丸御池站"
+            }
+        }
+    ]
+}

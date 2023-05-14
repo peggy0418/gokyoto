@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple Polyline, Polygon - Google Maps API demo - August - var's Write</title>
+  <!-- <link rel="canonical" href="https://www.varswrite.tw/google-map-api-geometry/"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    #map{
+      height: 600px;
+    }
+    .container {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+    .scale-in-ver-top {
+      -webkit-animation: scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      animation: scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    .puff-in-hor {
+      -webkit-animation: puff-in-hor 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+      animation: puff-in-hor 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    }
+  </style>
+
+  <!-- <link rel="shortcut icon" href="https://varswritetw.github.io/varswritetw/dist/img/logo_512.png" /> -->
+  <!-- Google Tag Manager-->
+  <!-- 網頁主人 -->
+  <!-- <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googvaragmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PGQ9WQT');
+    </script> -->
+</head>
+
+<body>
+
+  <!-- Google Tag Manager (noscript)-->
+  <!-- <noscript>
+    <iframe src="https://www.googvaragmanager.com/ns.html?id=GTM-PGQ9WQT" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript> -->
+
+  <div id="app" class="container">
+
+
+    <div id="map" class=""></div>
+    <div class="btn-group btn-group-sm scale-in-ver-top">
+      <button type="button" class="btn btn-primary" id="song1" v-on:click="first">第一句</button>
+      <button type="button" class="btn btn-warning" id="song2" v-on:click="second">第二句</button>
+      <button type="button" class="btn btn-success" id="song3" v-on:click="third">第三句</button>
+      <button type="button" class="btn btn-info" id="song4" v-on:click="fourth">第四句</button>
+      <button type="button" class="btn btn-danger" id="song5" v-on:click="fifth">第五句</button>
+      <button type="button" class="btn" style="background-color: pink;" id="clear" v-on:click="clear">清除</button>
+    </div>
+
+    <!-- <div class="row fixed-bottom">
+            <div class="col">
+                <div class="alert alert-info" role="alert">
+                    var's Write 筆記文：<br />
+                    <a href="https://varswrite.tw/google-map-api-geometry/" target="_blank">Google Maps
+                        API學習筆記-2：在地圖上畫個日本結界</a>
+                </div>
+            </div>
+        </div> -->
+
+  </div>
+
+  <!-- 將 YOUR_API_KEY 替換成你的 API Key 即可 -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT4USK1FuD6Hiv1cXYadx64qa8eU3vUTs&callback=initMap&v=weekly"
+    defer>
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <link rel="stylesheet" href="animaction/animaction.css">
+
+  <!-- map -->
+  <script>
+    var googleMap = new Vue({
+      el: '#app',
+      data: {
+        map: null,
+        simplePolyline: [], // 存入折線圖的點
+        simplePolygon: [] // 存入多邊形的點
+      },
+      methods: {
+        // init google map
+        initMap() {
+
+          // 預設顯示的地點：靖國神社
+          var location = {
+            lat: 35.01735325978514, // 經度
+            lng: 135.75950817241358 // 緯度
+          };
+
+          // 建立地圖
+          this.map = new google.maps.Map(document.getElementById('map'), {
+            center: location,
+            zoom: 17,
+            mapTypeId: 'roadmap'
+          });
+        },
+
+        first() {
+
+          // 畫折線圖：平將門北斗七星
+          fetch('./GeoJSON/GeoJSON_first.geojson')
+            .then(results => results.json())
+            .then(result => {
+              var res = result.features;
+              var flightPlanCoordinates = [];
+              Array.prototype.forEach.call(res, r => {
+                var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                var marker = new google.maps.Marker({
+                  position: latLng,
+                  map: this.map
+                });
+                // info window
+                var infowindow = new google.maps.InfoWindow({
+                  content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                });
+
+                infowindow.open(this.map, marker);
+
+                // 將每個折線的點存入 simplePolyline
+                this.simplePolyline.push({
+                  lat: r.geometry.coordinates[0],
+                  lng: r.geometry.coordinates[1]
+                });
+
+              });
+
+              // 畫折線圖
+              var polyline = new google.maps.Polyline({
+                path: this.simplePolyline,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 5
+              });
+              polyline.setMap(this.map);
+
+            });
+        },
+
+        second() {
+          // 畫折線圖：平將門北斗七星
+          fetch('./GeoJSON/GeoJSON_second.geojson')
+            .then(results => results.json())
+            .then(result => {
+              var res = result.features;
+              var flightPlanCoordinates = [];
+              Array.prototype.forEach.call(res, r => {
+                var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                var marker = new google.maps.Marker({
+                  position: latLng,
+                  map: this.map
+                });
+                // info window
+                var infowindow = new google.maps.InfoWindow({
+                  content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                });
+
+                infowindow.open(this.map, marker);
+
+                // 將每個折線的點存入 simplePolyline
+                this.simplePolyline.push({
+                  lat: r.geometry.coordinates[0],
+                  lng: r.geometry.coordinates[1]
+                });
+
+              });
+
+              // 畫折線圖
+              var line = []
+              var polyline = new google.maps.Polyline({
+                path: this.simplePolyline,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 5
+              });
+
+              line.push(polyline) //沒有setMap會只出現地標
+              polyline.setMap(this.map)
+              //畫完線五秒後消失
+              setTimeout(() => {
+                polyline.setMap(null);
+              }, 2000);
+              //線跟地標一起出現
+              // polyline.setMap(this.map)
+
+            });
+        },
+        third() {
+          // 畫折線圖：平將門北斗七星
+          fetch('./GeoJSON/GeoJSON_third.geojson')
+            .then(results => results.json())
+            .then(result => {
+              var res = result.features;
+              var flightPlanCoordinates = [];
+              Array.prototype.forEach.call(res, r => {
+                var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                var marker = new google.maps.Marker({
+                  position: latLng,
+                  map: this.map
+                });
+                // info window
+                var infowindow = new google.maps.InfoWindow({
+                  content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                });
+
+                infowindow.open(this.map, marker);
+
+                // 將每個折線的點存入 simplePolyline
+                this.simplePolyline.push({
+                  lat: r.geometry.coordinates[0],
+                  lng: r.geometry.coordinates[1]
+                });
+
+              });
+
+              // 畫折線圖
+              var line = []
+              var polyline = new google.maps.Polyline({
+                path: this.simplePolyline,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 5
+              });
+
+              line.push(polyline) //沒有setMap會只出現地標
+              polyline.setMap(this.map)
+              //畫完線五秒後消失
+              // setTimeout(() => {
+              //   polyline.setMap(null);
+              // }, 2000);
+              //線跟地標一起出現
+              // polyline.setMap(this.map)
+
+            });
+
+          //畫完線五秒後消失
+          // setTimeout(() => {
+          //   polyline.setMap(null);
+          // }, 2000);
+          //線跟地標一起出現
+          // polyline.setMap(this.map)
+
+          // clear() {
+          //   alert("ok")
+          // },
+        },
+        fourth() {
+          // 畫折線圖：平將門北斗七星
+          fetch('./GeoJSON/GeoJSON_fourth.geojson')
+            .then(results => results.json())
+            .then(result => {
+              var res = result.features;
+              var flightPlanCoordinates = [];
+              Array.prototype.forEach.call(res, r => {
+                var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                var marker = new google.maps.Marker({
+                  position: latLng,
+                  map: this.map
+                });
+                // info window
+                var infowindow = new google.maps.InfoWindow({
+                  content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                });
+
+                infowindow.open(this.map, marker);
+
+                // 將每個折線的點存入 simplePolyline
+                this.simplePolyline.push({
+                  lat: r.geometry.coordinates[0],
+                  lng: r.geometry.coordinates[1]
+                });
+
+              });
+
+              // 畫折線圖
+              var line = []
+              var polyline = new google.maps.Polyline({
+                path: this.simplePolyline,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 5
+              });
+
+              line.push(polyline) //沒有setMap會只出現地標
+              polyline.setMap(this.map)
+
+              // clear() {
+              //   alert("ok")
+              // },
+            })
+        },
+        fifth() {
+          // 畫折線圖：平將門北斗七星
+          fetch('./GeoJSON/GeoJSON_fifth.geojson')
+            .then(results => results.json())
+            .then(result => {
+              var res = result.features;
+              var flightPlanCoordinates = [];
+              Array.prototype.forEach.call(res, r => {
+                var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                var marker = new google.maps.Marker({
+                  position: latLng,
+                  map: this.map
+                });
+                // info window
+                var infowindow = new google.maps.InfoWindow({
+                  content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                });
+
+                infowindow.open(this.map, marker);
+
+                // 將每個折線的點存入 simplePolyline
+                this.simplePolyline.push({
+                  lat: r.geometry.coordinates[0],
+                  lng: r.geometry.coordinates[1]
+                });
+
+              });
+
+              // 畫折線圖
+              var line = []
+              var polyline = new google.maps.Polyline({
+                path: this.simplePolyline,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 5
+              });
+
+              line.push(polyline) //沒有setMap會只出現地標
+              polyline.setMap(this.map)
+
+              // clear() {
+              //   alert("ok")
+              // },
+            })
+        }
+      },
+      created() {
+        window.addEventListener('load', () => {
+          this.initMap();
+        });
+      }
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.01735325978514, 135.75950817241358
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "name": "丸太町"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.01626637382136, 135.7595482629533
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "name": "竹屋町"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.01488814474669, 135.75960949940762
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "name": "夷川町"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.01365002937478, 135.75964390583584
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "name": "二條"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          
+          35.01228537322775, 135.75968514185456
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "name": "押小路"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.010797529959646, 135.75965015890003
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "name": "御池"
+      }
+    }
+]
+}

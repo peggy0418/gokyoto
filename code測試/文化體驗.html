@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文化體驗</title>
+    <!-- JavaScript Bundle with Popper -->
+</head>
+<link rel="stylesheet" href="./bootstrap.css">
+<link rel="stylesheet" href="./animaction/animaction.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+<style>
+    /* 測試會不會跑版 */
+    html {
+        height: 100%;
+    }
+
+    body {
+        background-image: url("../圖檔/小專_background-.png");
+        width: 100%;
+        background-size: contain;
+        background-repeat: repeat-y repeat-x;
+        background-attachment: fixed;
+
+    }
+
+    #bigcontent {
+        margin-top: 80px;
+        margin-left: 250px;
+        /* text-align: center; */
+        width: 800px;
+        background-color: rgba(255, 255, 255, 0.5);
+        background-repeat: repeat-y;
+        box-shadow: 3px 3px 5px gray inset;
+        text-align: center;
+    }
+
+    .navbar {
+        background-image: url("../圖檔/櫻花.png");
+        background-color: rgb(248, 194, 237);
+        color: white;
+        height: 80px;
+    }
+
+    .nav-item {
+        display: flex;
+        font-family: 'Noto Sans TC', sans-serif;
+        font-size: 16px;
+        margin-left: 100px;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+
+    }
+
+    .navbar-brand {
+        position: relative;
+    }
+
+    .nav-item:hover {
+        background-color: peachpuff;
+        -webkit-animation: jello-diagonal-2 0.8s both;
+        animation: jello-diagonal-2 0.8s both;
+    }
+
+    .dropdown-menu {
+        background-color: rgb(255, 218, 185, 0.7);
+    }
+
+    .offcanvas-body li {
+        text-align: start;
+    }
+
+    #link_a a:link {
+        color: black;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    #link_a a:visited {
+        color: darkblue;
+        font-size: 30px;
+        text-decoration: line-through;
+       
+    }
+
+    #link_a a:focus {
+        background-color: coral;
+        color: white;
+        font-size: 20px;
+       
+    }
+
+    #link_a a:hover {
+        background-color: gold;
+        text-decoration: overline;
+
+
+    }
+
+    #link_a a:active {
+        text-decoration: line-through;
+    }
+
+    #bigcontent .btn {
+        margin-right: 730px;
+
+    }
+
+
+    /* 要先設定外層容器的width才能調整object-fit */
+    .carousel {
+        width: 80%;
+    }
+
+    .slide button {
+        margin-left: 100px;
+    }
+
+    .carousel img {
+        margin-left: 80px;
+        height: 400px;
+        display: block;
+        object-fit: contain;
+    }
+
+    #temple li {
+        list-style-type: "\2728"
+    }
+
+    #addr {
+        padding: 25px;
+    }
+
+    #addr li {
+        list-style-type: "\2728"
+    }
+
+
+    #content1 {
+        background-color: rgba(250, 235, 215, 0.85);
+        font-size: 20px;
+        padding: 20px;
+        text-align: justify;
+    }
+
+    #up {
+        display: inline-block;
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        background-color: #fff591;
+        /* border-radius: 20px; */
+    }
+
+    #clickmsg {
+        display: none;
+    }
+
+    #up:hover #clickmsg {
+        display: inline-block;
+        position: absolute;
+        top: -35px;
+        right: 20px;
+        width: 50px;
+        border: 3px;
+        background-color: rgba(17, 17, 16, 0.5);
+        color: azure;
+        border-radius: 20px;
+
+    }
+</style>
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+<body>
+    <div id="background">
+        <div class="container">
+            <nav class="navbar navbar-expand-sm fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="enter.html"><img src="../圖檔/GOKYOTO-1--unscreen.gif" alt=""
+                            height="120"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="homepage.html">回分類頁</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="culture" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="true">體驗與祭典</a>
+                                <ul class="dropdown-menu" aria-labelledby="culture">
+                                    <li><a class="dropdown-item" href="./文化體驗.html">文化體驗</a></li>
+                                    <hr>
+                                    <li><a class="dropdown-item" href="./葵祭.html">祭典節慶</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./景點介紹.html">景點介紹</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./美食介紹.html">美食介紹</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./map.html">用地圖來認識京都</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <br>
+    <div id="bigcontent">
+        <a class="btn btn-primary btn-md" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+            aria-controls="offcanvasExample"
+            style="background-color: rgb(244, 193, 117);border-style: none;color: black;">
+            目錄
+        </a>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel" data-bs-scroll="true"
+            style="margin-top:80px;width: 30%;background-color: rgba(250, 227, 215, 0.8);">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">總覽</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div id="link_a" class="text-pop-up-top">
+                    <li><a href="#1">和服體驗——西陣織會館</a></li>
+                    <li><a href="#2">忍者體驗——東映太秦映畫村</a></li>
+                    <li><a href="#3">茶道體驗——茶道體驗En</a></li>
+                </div>
+
+            </div>
+        </div>
+        <div id="1">
+            <br>
+            <h3 id="title1">和服體驗——西陣織會館</h3>
+            <div id="carouselExampleIndicators1" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000553/img/basic/a2000553_main.jpg?20201125161909&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000553/img/zh-tw/a2000553_parts_5f9266aed086b.jpg?20201125161909&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000553/img/zh-tw/a2000553_parts_5f926741f1adc.jpg?20201125161909&q=80"
+                            class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content1">
+                「西陣織」是京都的傳統織布技術，也是日本和服精緻布料的代表。西陣織由染線開始，絲線染製完成後，再用人工手動的紡織機，編織出各種的花紋與紋路，做工相當精巧複雜。
+                <br>可以免費入場參觀的西陣織會館，除了有靜態的展示之外，還有定時的和服走秀，如果想要進行和服體驗，這邊也有提供相關的服務唷！
+            </div>
+            <ul id="addr" class="bg-gradient rounded-top rounded-bottom"
+                style="background-color:rgba(255, 166, 0, 0.463);color: black;text-align: justify;font-size: 14px;">
+                <li>地址： 604-8301京都市中京区二条通堀川西入二条城町541<br></li>
+                <li>交通方式：從京都車搭烏丸線到「烏丸御池」，再轉東西線到「二条城前」下車或搭乘京都市巴士9、50、101號<br></li>
+            </ul>
+        </div>
+        <div id="2">
+            <br>
+            <h3 id="title1">忍者體驗——東映太秦映畫村</h3>
+            <div id="carouselExampleIndicators2" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="http://global.toei-eigamura.com/wp-content/uploads/2022/01/about-1024x397-1.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://holiday.gowentgone.net/wp-content/uploads/2018/03/img1-%E6%8B%B7%E8%B2%9D.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://global.toei-eigamura.com/wp-content/uploads/2022/01/Flim-Set-Viewing-Area-1024x683.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content1">
+                「東映太秦映畫村是江戶時代的主題公園，擁有53000平方米，有不同的真實電視電影佈景，場內工作人員亦十分投入。
+                <br>他們看見遊客經過，就會拿起手上的刀劍即時比試，要求每一位遊客也投入映畫村中。活動及表演節目的時空都是設定於江戶時代。
+
+            </div>
+            <ul id="addr" class="bg-gradient rounded-top rounded-bottom"
+                style="background-color:rgba(255, 166, 0, 0.463);color: black;text-align: justify;font-size: 14px;">
+                <li>地址： 616-8586 京都市右京区太秦東蜂岡町10<br></li>
+                <li><a href="https://global.toei-eigamura.com/zh/" style="color: black;">東映太秦映畫村官網</a><br></li>
+            </ul>
+        </div>
+        <div id="3">
+            <br>
+            <h3 id="title3">茶道體驗——茶道體驗En</h3>
+            <div id="carouselExampleIndicators3" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://resources.matcha-jp.com/resize/720x2000/2017/07/25-31998.webp"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://resources.matcha-jp.com/resize/720x2000/2017/07/25-32005.webp"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://resources.matcha-jp.com/resize/720x2000/2017/07/25-32008.webp"
+                            class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators3"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators3"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <br>
+            </div>
+            <div id="content1">
+                「En」店名的由來是因為「En」這個讀音在日文裡，漢字可以寫作「緣」或是「圓（円）」，象徵聯繫人和場所的「緣」，以及圓滑沒有菱角的「圓（円）」。
+
+                <br>室內裝潢和茶室是店主和員工們親手設計佈置的，快來這個充滿巧思的「茶道体験En」體驗日本文化吧！<br>
+
+                <br>在茶道裡有「一期一會」這個說法，也就是「一輩子只有一次」的意思，因此在這個時候，和這些人一起聚集到這裡舉辦茶會，這輩子可能不會再有第二次，所以必須把握機會好好珍惜的。
+
+
+
+            </div>
+            <ul id="addr" class="bg-gradient rounded-top rounded-bottom"
+                style="background-color:rgba(255, 166, 0, 0.463);color: black;text-align: justify;font-size: 14px;">
+                <li>地址： 605-0063 京都市東山区松原町272<br></li>
+                <li><a href="http://www.teaceremonyen.com/jp/" style="color: black;">茶道體驗En官網</a><br></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <div id="up" class="rounded-circle"><a class="nav-link active" aria-current="page" href="#"><img
+                src="../圖檔/up-2--unscreen.gif" alt="" height="50"></a>
+        <div id="clickmsg" class="animate__animated animate__bounce animate__infinite">To top</div>
+    </div>
+
+</body>
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+
+</html>

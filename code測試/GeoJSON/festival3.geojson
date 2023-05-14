@@ -1,0 +1,122 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.02562381128925, 135.76199662124012
+                ]
+            },
+            "properties": {
+                "id": 1,
+                "name": "京都御所"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.01777570192546, 135.76316007111365
+                ]
+            },
+            "properties": {
+                "id": 2,
+                "name": "堺町御門"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.01738082790747, 135.75946194935455
+                ]
+            },
+            "properties": {
+                "id": 3,
+                "name": "烏丸丸太町"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.010795177642144, 135.75966138088702
+                ]
+            },
+            "properties": {
+                "id": 4,
+                "name": "烏丸御池"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.01060678236453, 135.76895996436048
+                ]
+            },
+            "properties": {
+                "id": 5,
+                "name": "河原町御池"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.010191252181805, 135.7689581145322
+                ]
+            },
+            "properties": {
+                "id": 6,
+                "name": "河原町三条"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.009102898125235, 135.77224100641828
+                ]
+            },
+            "properties": {
+                "id": 7,
+                "name": "三条大橋"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00926172461315, 135.78262476416177
+                ]
+            },
+            "properties": {
+                "id": 8,
+                "name": "三条神宮道"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.01612700790216, 135.78243705414076
+                ]
+            },
+            "properties": {
+                "id": 9,
+                "name": "平安神宮"
+            }
+        }
+    ]
+}

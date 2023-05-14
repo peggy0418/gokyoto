@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用地圖認識京都</title>
+  <!-- JavaScript Bundle with Popper -->
+</head>
+<link rel="stylesheet" href="./bootstrap.css">
+<link rel="stylesheet" href="./animaction/animaction.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+<style>
+  body {
+    background-image: url("../圖檔/小專_background-.png");
+    width: 1280px;
+    height: 500px;
+    background-size: contain;
+    background-repeat: repeat-y repeat-x;
+    background-attachment: fixed;
+
+  }
+
+  #content {
+    margin-top: 80px;
+    margin-left: 350px;
+    text-align: center;
+    width: 50%;
+    background-color: white;
+    background-repeat: repeat-y;
+    box-shadow: 3px 3px 5px gray inset;
+
+  }
+
+  .navbar {
+    background-image: url("../圖檔/櫻花.png");
+    background-color: rgb(248, 194, 237);
+    color: white;
+    height: 80px;
+  }
+
+  .nav-item {
+    display: flex;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 16px;
+    margin-left: 100px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  .dropdown-menu {
+        background-color: rgb(255, 218, 185, 0.7);
+    }
+
+  #map {
+    height: 800px;
+  }
+
+  .container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .scale-in-ver-top {
+    -webkit-animation: scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+  .puff-in-hor {
+    -webkit-animation: puff-in-hor 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    animation: puff-in-hor 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  }
+
+  .nav-item:hover {
+    background-color: peachpuff;
+    -webkit-animation: jello-diagonal-2 0.8s both;
+    animation: jello-diagonal-2 0.8s both;
+  }
+
+  textarea {
+    display: none
+  }
+
+  #bgword,
+  #foreword {
+    position: absolute;
+  }
+
+  #bgword {
+    color: green;
+    width: 300px;
+    text-align: center;
+    /* font-size: 20px; */
+  }
+
+  audio {
+    margin-top: 60px;
+    margin-right: 0;
+
+  }
+  #view{
+    position: relative;
+    margin-left: 150px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  #up {
+        display: inline-block;
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        background-color: #fff591;
+        /* border-radius: 20px; */
+    }
+
+    #clickmsg {
+        display: none;
+    }
+
+    #up:hover #clickmsg {
+        display: inline-block;
+        position: absolute;
+        top: -35px;
+        right: 20px;
+        width: 50px;
+        border: 3px;
+        background-color: rgba(17, 17, 16, 0.5);
+        color: azure;
+        border-radius: 20px;
+
+    }
+</style>
+
+
+<body>
+  <div id="background">
+    <div class="container">
+      <nav class="navbar navbar-expand-sm fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="enter.html"><img src="../圖檔/GOKYOTO-1--unscreen.gif" alt="" height="120"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="homepage.html">回分類頁</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="culture" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="true">體驗與祭典</a>
+                <ul class="dropdown-menu" aria-labelledby="culture">
+                  <li><a class="dropdown-item" href="./文化體驗.html">文化體驗</a></li>
+                  <hr>
+                  <li><a class="dropdown-item" href="./葵祭.html">祭典節慶</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./景點介紹.html">景點介紹</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./美食介紹.html">美食介紹</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./map.html">用地圖來認識京都</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div id="content">
+    <div id="app" class="container">
+      <div id="map" class=""></div>
+      <div class="btn-group btn-group-sm scale-in-ver-top">
+        <button type="button" class="btn" id="song1" v-on:click="first"
+          style="background-color: #ff0000;color: #ffff;">第一句</button>
+        <button type="button" class="btn" id="song2" v-on:click="second"
+          style="background-color: #ff8700;color: #ffff;">第二句</button>
+        <button type="button" class="btn btn-warning text-white" id="song3" v-on:click="third">第三句</button>
+        <button type="button" class="btn btn-success" id="song4" v-on:click="fourth">第四句</button>
+        <button type="button" class="btn btn-primary" id="song5" v-on:click="fifth">第五句</button>
+        <button type="button" class="btn " id="song6" v-on:click="sixth"
+          style="background-color: #580aff;color: #ffff;">第六句</button>
+        <button type="button" class="btn " id="song7" v-on:click="seventh"
+          style="background-color: #be0aff;color: #ffff;">第七句</button>
+        <!-- <button type="button" class="btn" style="background-color: pink;" id="clear" v-on:click="clear">清除</button> -->
+      </div>
+    </div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT4USK1FuD6Hiv1cXYadx64qa8eU3vUTs&callback=initMap&v=weekly"
+      defer>
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+    <!-- map -->
+    <script>
+      var googleMap = new Vue({
+        el: '#app',
+        data: {
+          map: null,
+          simplePolyline: [], // 存入折線圖的點
+        },
+        methods: {
+          // init google map
+          initMap() {
+
+            // 預設顯示的地點
+            var location = {
+              lat: 35.01735325978514, // 經度
+              lng: 135.75950817241358 // 緯度
+            };
+
+            // 建立地圖
+            this.map = new google.maps.Map(document.getElementById('map'), {
+              center: location,
+              zoom: 17,
+              mapTypeId: 'roadmap'
+            });
+          },
+
+          first() {
+
+            // 畫折線圖
+            fetch('./GeoJSON/GeoJSON_first.geojson')
+              .then(results => results.json())
+              .then(result => {
+                var res = result.features;
+                var flightPlanCoordinates = [];
+                Array.prototype.forEach.call(res, r => {
+                  var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: this.map
+                  });
+                  // info window
+                  var infowindow = new google.maps.InfoWindow({
+                    content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                  });
+
+                  infowindow.open(this.map, marker);
+
+                  // 將每個折線的點存入 simplePolyline
+                  this.simplePolyline.push({
+                    lat: r.geometry.coordinates[0],
+                    lng: r.geometry.coordinates[1]
+                  });
+
+                });
+
+                // 畫折線圖
+                var polyline = new google.maps.Polyline({
+                  path: this.simplePolyline,
+                  geodesic: true,
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 1.0,
+                  strokeWeight: 5
+                });
+                polyline.setMap(this.map);
+
+              });
+          },
+
+          second() {
+            // 畫折線圖
+            fetch('./GeoJSON/GeoJSON_second.geojson')
+              .then(results => results.json())
+              .then(result => {
+                var res = result.features;
+                var flightPlanCoordinates = [];
+                Array.prototype.forEach.call(res, r => {
+                  var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: this.map
+                  });
+                  // info window
+                  var infowindow = new google.maps.InfoWindow({
+                    content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                  });
+
+                  infowindow.open(this.map, marker);
+
+                  // 將每個折線的點存入 simplePolyline
+                  this.simplePolyline.push({
+                    lat: r.geometry.coordinates[0],
+                    lng: r.geometry.coordinates[1]
+                  });
+
+                });
+
+                // 畫折線圖
+                var line = []
+                var polyline = new google.maps.Polyline({
+                  path: this.simplePolyline,
+                  geodesic: true,
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 1.0,
+                  strokeWeight: 5
+                });
+
+                line.push(polyline) //沒有setMap會只出現地標
+                polyline.setMap(this.map)
+                //畫完線五秒後消失
+                setTimeout(() => {
+                  polyline.setMap(null);
+                }, 2000);
+                //線跟地標一起出現
+                // polyline.setMap(this.map)
+
+              });
+          },
+          third() {
+            // 畫折線圖
+            fetch('./GeoJSON/GeoJSON_third.geojson')
+              .then(results => results.json())
+              .then(result => {
+                var res = result.features;
+                var flightPlanCoordinates = [];
+                Array.prototype.forEach.call(res, r => {
+                  var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: this.map
+                  });
+                  // info window
+                  var infowindow = new google.maps.InfoWindow({
+                    content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                  });
+
+                  infowindow.open(this.map, marker);
+
+                  // 將每個折線的點存入 simplePolyline
+                  this.simplePolyline.push({
+                    lat: r.geometry.coordinates[0],
+                    lng: r.geometry.coordinates[1]
+                  });
+
+                });
+
+                // 畫折線圖
+                var line = []
+                var polyline = new google.maps.Polyline({
+                  path: this.simplePolyline,
+                  geodesic: true,
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 1.0,
+                  strokeWeight: 5
+                });
+
+                line.push(polyline) //沒有setMap會只出現地標
+                polyline.setMap(this.map)
+                //畫完線五秒後消失
+                // setTimeout(() => {
+                //   polyline.setMap(null);
+                // }, 2000);
+                //線跟地標一起出現
+                // polyline.setMap(this.map)
+
+              });
+
+            //畫完線五秒後消失
+            // setTimeout(() => {
+            //   polyline.setMap(null);
+            // }, 2000);
+            //線跟地標一起出現
+            // polyline.setMap(this.map)
+
+            // clear() {
+            //   alert("ok")
+            // },
+          },
+          fourth() {
+            // 畫折線圖
+            fetch('./GeoJSON/GeoJSON_fourth.geojson')
+              .then(results => results.json())
+              .then(result => {
+                var res = result.features;
+                var flightPlanCoordinates = [];
+                Array.prototype.forEach.call(res, r => {
+                  var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: this.map
+                  });
+                  // info window
+                  var infowindow = new google.maps.InfoWindow({
+                    content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                  });
+
+                  infowindow.open(this.map, marker);
+
+                  // 將每個折線的點存入 simplePolyline
+                  this.simplePolyline.push({
+                    lat: r.geometry.coordinates[0],
+                    lng: r.geometry.coordinates[1]
+                  });
+
+                });
+
+                // 畫折線圖
+                var line = []
+                var polyline = new google.maps.Polyline({
+                  path: this.simplePolyline,
+                  geodesic: true,
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 1.0,
+                  strokeWeight: 5
+                });
+
+                line.push(polyline) //沒有setMap會只出現地標
+                polyline.setMap(this.map)
+
+                // clear() {
+                //   alert("ok")
+                // },
+              })
+          },
+          fifth() {
+            // 畫折線圖
+            fetch('./GeoJSON/fifth.geojson')
+              .then(results => results.json())
+              .then(result => {
+                var res = result.features;
+                var flightPlanCoordinates = [];
+                Array.prototype.forEach.call(res, r => {
+                  var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: this.map
+                  });
+                  // info window
+                  var infowindow = new google.maps.InfoWindow({
+                    content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                  });
+
+                  infowindow.open(this.map, marker);
+
+                  // 將每個折線的點存入 simplePolyline
+                  this.simplePolyline.push({
+                    lat: r.geometry.coordinates[0],
+                    lng: r.geometry.coordinates[1]
+                  });
+
+                });
+
+                // 畫折線圖
+                var line = []
+                var polyline = new google.maps.Polyline({
+                  path: this.simplePolyline,
+                  geodesic: true,
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 1.0,
+                  strokeWeight: 5
+                });
+
+                line.push(polyline) //沒有setMap會只出現地標
+                polyline.setMap(this.map)
+
+                // clear() {
+                //   alert("ok")
+                // },
+              })
+          },
+          sixth() {
+            // 畫折線圖
+            fetch('./GeoJSON/GeoJSON_sixth.geojson')
+              .then(results => results.json())
+              .then(result => {
+                var res = result.features;
+                var flightPlanCoordinates = [];
+                Array.prototype.forEach.call(res, r => {
+                  var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: this.map
+                  });
+                  // info window
+                  var infowindow = new google.maps.InfoWindow({
+                    content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                  });
+
+                  infowindow.open(this.map, marker);
+
+                  // 將每個折線的點存入 simplePolyline
+                  this.simplePolyline.push({
+                    lat: r.geometry.coordinates[0],
+                    lng: r.geometry.coordinates[1]
+                  });
+
+                });
+
+                // 畫折線圖
+                var line = []
+                var polyline = new google.maps.Polyline({
+                  path: this.simplePolyline,
+                  geodesic: true,
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 1.0,
+                  strokeWeight: 5
+                });
+
+                line.push(polyline) //沒有setMap會只出現地標
+                polyline.setMap(this.map)
+
+                // clear() {
+                //   alert("ok")
+                // },
+              })
+          },
+          seventh() {
+            // 畫折線圖
+            fetch('./GeoJSON/GeoJSON_seventh.geojson')
+              .then(results => results.json())
+              .then(result => {
+                var res = result.features;
+                var flightPlanCoordinates = [];
+                Array.prototype.forEach.call(res, r => {
+                  var latLng = new google.maps.LatLng(r.geometry.coordinates[0], r.geometry.coordinates[1]);
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: this.map
+                  });
+                  // info window
+                  var infowindow = new google.maps.InfoWindow({
+                    content: `<span class="font-weight-bold">${r.properties.name}</span>` // 支援html
+                  });
+
+                  infowindow.open(this.map, marker);
+
+                  // 將每個折線的點存入 simplePolyline
+                  this.simplePolyline.push({
+                    lat: r.geometry.coordinates[0],
+                    lng: r.geometry.coordinates[1]
+                  });
+
+                });
+
+                // 畫折線圖
+                var line = []
+                var polyline = new google.maps.Polyline({
+                  path: this.simplePolyline,
+                  geodesic: true,
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 1.0,
+                  strokeWeight: 5
+                });
+
+                line.push(polyline) //沒有setMap會只出現地標
+                polyline.setMap(this.map)
+
+                // clear() {
+                //   alert("ok")
+                // },
+              })
+          }
+        },
+        created() {
+          window.addEventListener('load', () => {
+            this.initMap();
+          });
+        }
+      })
+    </script>
+
+    <textarea id="lyrics" cols="80" rows="5">
+  [00:03.92]第一句:丸 竹 夷 二 押 御池（まる　たけ　えびす　に　おし　おいけ）
+  [00:08.09]第二句:姐 三 六角 蛸 錦（あね　さん　ろっかく　たこ　にしき）
+  [00:13.27]第三句:四 綾 佛 高 松 萬 五條（し　あや　ぶっ　たか　まつ　まん　ごじょう）
+  [00:17.24]第四句:雪駄　ちゃらちゃら　魚の棚 行囊 錢 聲 魚之棚（せった　ちゃらちゃら　うおのたな）
+  [00:21.22]第五句:六條　七條　とおりすぎ 通過了六條七條（ろくじょう　ひっちょう　とおりすぎ）
+  [00:25.81]第六句:八條こえれば　東寺道 過了八條就是東寺路（はちじょうこえれば　とうじみち）
+  [00:30.36]第七句:九條大路で　とどめさす 九條大路連成片（くじょうおおじで　とどめさす）
+          </textarea>
+
+    <input id="start" type="button" value="顯示歌詞" class="btn btn-secondary" />
+
+    <div id="view">
+      <div id="bgword">
+      </div>
+      <div id="foreword">
+        <span id="forewrodTxt" />
+      </div>
+    </div>
+    <audio src="../圖檔/丸竹夷.mp3" controls="controls" preload id="music"> </audio>
+    
+    <script>
+      var currentItem = null,
+        bgword = $("#bgword"),
+        foreword = $("#foreword"),
+        forewrodTxt = $("#forewrodTxt"),
+        timer;
+
+      //將歌詞檔轉換為陣列
+      function parseLyric() {
+        var lyric = $("#lyrics").val();
+        var items = lyric.match(/\[[0-9]{2}:[[0-9]{2}\.[[0-9]{2}\].*/gi); //用於抓取時間的正規表達式
+        var item = [];
+        $.each(items, function (ind, line) {
+          var items = line.split(/[\[\]]/);
+
+          item.push({
+            time: parseTime(items[1]),
+            txt: items[2]
+          });
+          //debug trace
+          // console.log("time:"+ parseTime(items[1]) +",txt:"+items[2] );
+        });
+        //note here we assume the item is sorted by time to speed it up!
+        return item;
+      }
+
+
+      /**
+       *  test case alert(parseTime("03:09.30")); //189300
+       */
+      function parseTime(time) { //"03:09.30" to 189300 (ms)
+
+        var tokens = time.split(/[:\.]/);
+        return parseInt(tokens[0], 10) * 60000 +
+          parseInt(tokens[1], 10) * 800 +
+          parseInt(tokens[2], 10) * 10;
+      }
+
+      /**
+       * Assume that lyricList is sorted list , here we use binary search.
+       */
+      function findPreviousItem(lyricList, currentMsIndex) {
+        var len = lyricList.length;
+
+        if (len == 0) return null;
+        if (currentMsIndex < lyricList[0].time) return lyricList[0];
+        var high = len - 1;
+        var low = 0;
+
+        while (low <= high) {
+          mid = parseInt((low + high) / 2)
+          if (lyricList[mid].time > currentMsIndex) {
+            high = mid - 1;
+            //    console.log("high:" + high);            
+          } else if (currentMsIndex > lyricList[mid].time) {
+            low = mid + 1;
+            //   console.log("low:" + low);            
+          } else {
+            return lyricList[mid];
+          }
+        }
+
+        return lyricList[low - 1];
+
+      }
+
+      var maxwidth = 300;
+
+      function show(lyricList, currentMsIndex) {
+        currentItem = findPreviousItem(lyricList, currentMsIndex);
+        bgword.text(currentItem.txt);
+        // forewrodTxt.text(currentItem.txt);
+        var diff = 50 / currentItem.txt.length,
+          width = (currentMsIndex - currentItem.time) / diff;
+        foreword.width(width > maxwidth ? maxwidth : width);
+      }
+
+      function play() {
+        var lyricList = parseLyric();
+        var time = new Date();
+
+        //guard statement.
+        if (timer != null) clearInterval(timer);
+
+        timer = setInterval(function () {
+          var now = new Date();
+          show(lyricList, now.getTime() - time.getTime());
+        }, 50);
+      }
+
+      $("#start").click(function () {
+        if (timer == null) {
+          play();
+        } else {
+          this.value = "顯示歌詞";
+          clearInterval(timer);
+          timer = null;
+        }
+      });
+      var ebtplay = document.querySelector("#start")
+      var emymp3 = document.querySelector("#music");
+
+
+      ebtplay.onclick = function () {
+        emymp3.play()
+      }
+
+  //test funtcion
+      /*
+      function testShow(){
+         var lyricList= parseLyric();   
+         show(lyricList,28500);
+      }
+      testShow();
+      */
+
+    </script>
+<div id="up" class="rounded-circle"><a class="nav-link active" aria-current="page" href="#"><img
+  src="../圖檔/up-2--unscreen.gif" alt="" height="50"></a>
+<div id="clickmsg" class="animate__animated animate__bounce animate__infinite">To top</div>
+</div>
+</body>
+
+</html>

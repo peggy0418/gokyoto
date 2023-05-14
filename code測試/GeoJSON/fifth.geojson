@@ -1,0 +1,32 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.99391294936352, 135.75976629215023
+                ]
+            },
+            "properties": {
+                "id": 1,
+                "name": "六條"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.98925849660512, 135.75977385524521
+                ]
+            },
+            "properties": {
+                "id": 2,
+                "name": "七條"
+            }
+        }
+       
+    ]
+}

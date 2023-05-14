@@ -1,0 +1,76 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.009884368985446,
+                    135.75965426326817
+                ]
+            },
+            "properties": {
+                "id": 1,
+                "name": "姐小路"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00858871887187,
+                    135.7596333088036
+                ]
+            },
+            "properties": {
+                "id": 2,
+                "name": "三條"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00732807154251,
+                    135.7596677253453
+                ]
+            },
+            "properties": {
+                "id": 3,
+                "name": "六角"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00613991355244,
+                    135.7596761440347
+                ]
+            },
+            "properties": {
+                "id": 4,
+                "name": "蛸藥師"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00499442916996,
+                    135.75966187890484
+                ]
+            },
+            "properties": {
+                "id": 5,
+                "name": "錦小路"
+            }
+        }
+       
+    ]
+}

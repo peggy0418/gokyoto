@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁</title>
+    <!-- JavaScript Bundle with Popper -->
+</head>
+<link rel="stylesheet" href="./bootstrap.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./animaction/animaction.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+
+<style>
+    html {
+        height: 100%
+    }
+    #clock{
+        margin-right:135px;
+        font-size: 12px;
+        
+    }
+
+    .kenburns-top {
+        -webkit-animation: kenburns-top 5s ease-out both;
+        animation: kenburns-top 5s ease-out both;
+    }
+
+    .tracking-out-expand-fwd {
+        -webkit-animation: tracking-out-expand-fwd 1.0s linear both;
+        /* animation: tracking-out-expand-fwd 0.8s linear both; */
+    }
+
+    body {
+        position: absolute;
+        background-image: url("../圖檔/小專_background-.png");
+        width: 1200px;
+        height: 600px;
+        background-size: contain;
+        background-repeat: repeat-x;
+        background-attachment: fixed;
+        z-index: -3;
+
+
+    }
+
+    /* .navbar {
+        background-image: url("../圖檔/navbar.jpg");
+        background-color: rgb(248, 194, 237);
+        color: white;
+    } */
+    .card {
+        background-color: #ffffff;
+        border-radius: 3px;
+        border: 1px solid #a1a1a1;
+        padding: 20px;
+        background-color: rgba(84, 81, 81, 0.845);
+        height: 100%;
+    }
+
+    .carousel .carousel-item {
+        height: 300px;
+    }
+
+    .carousel .carousel-item img {
+        min-height: 300px;
+        max-height: 400px;
+        object-fit: cover;
+    }
+
+    .row {
+        margin-left: 100px;
+    }
+
+    .card-body {
+        color: #ffffff;
+    }
+
+    .card .pic img {
+        width: 100%;
+    }
+
+    .card .card-header {
+        border-bottom: none;
+        background-color: transparent;
+    }
+
+    .card .title {
+        color: #444444;
+    }
+
+    .card .text {
+        color: #444444;
+    }
+
+    .card-link:link {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+    .card-link:visited {
+        color: rgb(197, 247, 247);
+    }
+
+    .card-link:focus {
+        background-color: black;
+    }
+
+    .card-link:hover {
+        text-decoration: line-through;
+    }
+
+    .card-link:active {
+        font-size: 20px;
+    }
+
+    .card-footer {
+        border-top: none !important;
+        background-color: transparent !important;
+    }
+</style>
+<script>
+    //載入視窗就跳出modal
+    $(window).ready(() => {
+        $('.modal').modal('show');
+    })
+
+    window.onload = function () {
+        // const dy = new Date();
+        document.getElementById("demoy").innerText = new Date().getFullYear();
+        // const dm = new Date();
+        document.getElementById("demom").innerText = new Date().getMonth() + 1;
+        // const dd = new Date();
+        document.getElementById("demod").innerText = new Date().getDate();
+        // const dh = new Date();
+        document.getElementById("demoh").innerText = new Date().getHours()
+        // const dmin = new Date();
+        document.getElementById("demomin").innerText = new Date().getMinutes()
+        // const ds = new Date();
+        document.getElementById("demos").innerText = new Date().getSeconds();
+
+        setInterval(`{
+                let opacity=document.getElementById("colon").style.opacity
+                document.getElementById("demoy").innerText = new Date().getFullYear();
+                document.getElementById("demom").innerText = new Date().getMonth() + 1;
+                document.getElementById("demod").innerText = new Date().getDate();
+                document.getElementById("demoh").innerText=new Date().getHours()
+                document.getElementById("demomin").innerText=new Date().getMinutes()
+                document.getElementById("demos").innerText = new Date().getSeconds();
+                document.getElementById("colon").style.opacity=(opacity=="0")?"1":"0"}`, 1000)
+
+
+    }
+</script>
+
+<body>
+    <div id="background">
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button> -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Tip!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        進入介紹前先來用歌曲認識京都的道路吧!!(點選認識京都)
+                    </div>
+                    <div class="modal-footer">
+                        <!-- 顯示網頁載入的當前時間 -->
+                        <span id="clock">
+                            現在是:
+                            <span>
+                                <span id="demoy"></span><span id="colon">/</span><span id="demom"></span><span
+                                    id="colon">/</span><span id="demod"></span>
+                            </span> <!--年月日-->
+                            <span>
+                                &nbsp;<span id="demoh"></span><span id="colon">:</span><span id="demomin"></span><span
+                                    id="colon">:</span><span id="demos"></span>
+                            </span>
+                        </span>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">先不用</button>
+                        <a href="./map.html"><button type="button" class="btn btn-primary">認識京都</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row px-4 pt-2">
+            <div class="col-4 d-flex align-items-stretch">
+                <div class="card">
+                    <div class="pic">
+                        <!-- <img src="https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_1000/v1655618208/blog/mcjoiduzdrhcm5ikwzty.webp"> -->
+                        <div id="1">
+                            <br>
+                            <div id="carouselExampleIndicators_side" class="carousel slide carousel-fade"
+                                data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <a href="./景點介紹.html" class="card-link">
+                                        <div class="carousel-item active" data-bs-interval="2000">
+                                            <img src="https://www.tromnimedia.com/FileUploads/ArticlePhoto/20211217030627360.jpg"
+                                                class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block"
+                                                style="background-color: rgba(0, 0, 0, 0.5);width: 600px;left:0;">
+                                                <h5 style="margin-right:300px;">平安神宮</h5>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="https://4.bp.blogspot.com/-qZYllGdvEnw/V0vdJO__fnI/AAAAAAAAtzI/If9ZAHASPXolPoYTy3h1putRGUPM5XGlQCKgB/s1600/IMG_6676-202.jpg"
+                                                class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block"
+                                                style="background-color: rgba(0, 0, 0, 0.2);width: 600px;left:0;">
+                                                <h5 style="margin-right:300px;">伏見稻荷大社</h5>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="https://kyoto.travel/other_attractions/nt8q320000000zaj-img/nt8q320000000zbs.jpg"
+                                                class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block"
+                                                style="background-color: rgba(0, 0, 0, 0.2);width: 600px;left:0;">
+                                                <h5 style="margin-right:300px;">渡月橋</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3>景點介紹</h3>
+                        <a href="./景點介紹.html" class="card-link">景點介紹</a><br>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 d-flex align-items-stretch">
+                <div class="card">
+                    <div class="pic">
+                        <!-- <img src="https://picsum.photos/300/?random=11"> -->
+                        <div id="2">
+                            <br>
+                            <div id="carouselExampleIndicators_side2" class="carousel slide carousel-fade"
+                                data-bs-ride="carousel">
+                                <div class="carousel-inner">
+
+
+                                    <div class="carousel-item active" data-bs-interval="2000">
+                                        <a href="./文化體驗.html" class="card-link">
+                                            <img src="http://global.toei-eigamura.com/wp-content/uploads/2022/01/Flim-Set-Viewing-Area-1024x683.jpg"
+                                                class="d-block w-100" alt="...">
+                                        </a>
+                                        <div class="carousel-caption d-none d-md-block"
+                                            style="background-color: rgba(0, 0, 0, 0.5);width: 600px;left:0;">
+                                            <h5 style="margin-right:300px;">文化體驗</h5>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <a href="./葵祭.html" class="card-link">
+                                            <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/20/00/a2000138/img/zh-tw/a2000138_parts_5d0b3728a7955.jpg?20210127085047&q=80"
+                                                class="d-block w-100" alt="...">
+                                        </a>
+                                        <div class="carousel-caption d-none d-md-block"
+                                            style="background-color: rgba(0, 0, 0, 0.2);width: 600px;left:0;">
+                                            <h5 style="margin-right:300px;">祭典節慶</h5>
+
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3>
+                            體驗與祭典
+                        </h3>
+                        <a href="./文化體驗.html" class="card-link">文化體驗</a><br>
+                        <a href="./葵祭.html" class="card-link">祭典節慶</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex align-items-stretch">
+                <div class="card">
+                    <div class="pic">
+                        <!-- <img src="https://picsum.photos/300/?random=12"> -->
+                        <div id="3">
+                            <br>
+                            <div id="carouselExampleIndicators_side3" class="carousel slide carousel-fade"
+                                data-bs-ride="carousel">
+                                <a href="./美食介紹.html" class="card-link">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="2000">
+                                            <img src="https://cn.soufani.com/wp-content/uploads/2019/05/679f2d2012971f6139d8381f0211bcb4.jpg"
+                                                class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block"
+                                                style="background-color: rgba(0, 0, 0, 0.5);width: 600px;left:0;">
+                                                <h5 style="margin-right:300px;">湯豆腐</h5>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="https://cdn2.ettoday.net/images/1382/1382846.jpg"
+                                                class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block"
+                                                style="background-color: rgba(0, 0, 0, 0.2);width: 600px;left:0;">
+                                                <h5 style="margin-right:300px;">鯖魚壽司</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="https://www.bubu-jp.com/wp-content/uploads/2017/04/1-1-1.jpg"
+                                                class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block"
+                                                style="background-color: rgba(0, 0, 0, 0.2);width: 600px;left:0;">
+                                                <h5 style="margin-right:300px;">蕨餅</h5>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="card-body">
+                        <h3>
+                            美食介紹
+                        </h3>
+                        <a href="./美食介紹.html" class="card-link">美食介紹</a><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<br><br><br><br><br><br>
+
+
+</html>

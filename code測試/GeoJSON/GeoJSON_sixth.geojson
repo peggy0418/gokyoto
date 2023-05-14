@@ -1,0 +1,19 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.98413127260011,
+                    135.75977964625744
+                ]
+            },
+            "properties": {
+                "id": 3,
+                "name": "八條"
+            }
+        }
+    ]
+}

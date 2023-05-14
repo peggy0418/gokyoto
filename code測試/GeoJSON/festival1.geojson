@@ -1,0 +1,44 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.02562381128925, 135.76199662124012
+                ]
+            },
+            "properties": {
+                "id": 1,
+                "name": "京都御所"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.03911832998487, 135.77292096627062
+                ]
+            },
+            "properties": {
+                "id": 2,
+                "name": "下鴨神社"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.05946530584001, 135.75256188347151
+                ]
+            },
+            "properties": {
+                "id": 3,
+                "name": "上賀茂神社"
+            }
+        }
+    ]
+}
