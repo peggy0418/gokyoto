@@ -15,9 +15,10 @@
 <link rel="stylesheet" href="./animaction/animaction.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <style>
-    html{
-        height:100%
+    html {
+        height: 100%
     }
+
     .tracking-out-expand-fwd {
         -webkit-animation: tracking-out-expand-fwd 1.0s linear both;
         /* animation: tracking-out-expand-fwd 0.8s linear both; */
@@ -65,11 +66,52 @@
         cursor: pointer;
         /* font-size: 140px; */
         text-shadow: 5px 5px 10px pink;
-        
-    } 
-    #text:active{
+
+    }
+
+    #text:active {
         -webkit-animation: tracking-out-expand-fwd 1.0s linear both;
         animation: tracking-out-expand-fwd 0.8s linear both;
+    }
+
+    /* RWD設定 */
+
+    @media (max-width: 720px) {
+        html {
+            height: 100%
+        }
+
+        body {
+            position: absolute;
+            background-image: url("../圖檔/小專_background-.png");
+            width: 100px;
+            background-size: cover;
+            background-repeat: repeat-y;
+            background-attachment: fixed;
+
+        }
+
+        #text {
+            font-size: 50px;
+            position: fixed;
+            right: 0;
+            left: 0;
+            margin-right: auto;
+            margin-left: auto;
+
+        }
+
+        #text:hover {
+            cursor: pointer;
+            /* font-size: 140px; */
+            text-shadow: 5px 5px 10px pink;
+
+        }
+
+        #text:active {
+            -webkit-animation: tracking-out-expand-fwd 1.0s linear both;
+            animation: tracking-out-expand-fwd 0.8s linear both;
+        }
     }
 </style>
 <!-- <script>
@@ -121,8 +163,7 @@
     </div> -->
 
     </div>
-    <div id="text"
-        onclick="location.href='./homepage.html'">
+    <div id="text" onclick="location.href='./homepage.html'">
         GOKYOTO</div>
 </body>
 <br><br><br><br><br><br>
